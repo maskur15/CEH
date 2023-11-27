@@ -2,7 +2,7 @@ import nmap
  
 scanner = nmap.PortScanner()
  
-ip_addr = '127.0.0.1'
+ip_addr = '10.0.2.15'
  
 response = input("""\nPlease enter the type of scan you want to run
                 1)SYN ACK Scan
@@ -63,7 +63,7 @@ elif response == '4':
     print("Open Ports: ", scanner[ip_addr]['tcp'].keys())
      
 elif response == '5':
-    print(scanner.scan("127.0.0.1", arguments="-O")['scan']['127.0.0.1']['osmatch'][1])
+    print(scanner.scan(ip_addr, arguments="-O")['scan'][ip_addr]['osmatch'][1])
  
 elif response == '6':
     ip_addr = input()
@@ -80,7 +80,7 @@ elif response == '6':
     print("Open Ports: ", scanner[ip_addr]['tcp'].keys())
      
 elif response == '7': 
-    scanner.scan(hosts='192.168.1.0/24', arguments='-n -sP -PE -PA21,23,80,3389')
+    scanner.scan(hosts=ip_addr+'/20', arguments='-n -sP -PE -PA21,23,80,3389')
     hosts_list = [(x, scanner[x]['status']['state']) for x in scanner.all_hosts()]
     for host, status in hosts_list:
         print('{0}:{1}'.format(host, status))
