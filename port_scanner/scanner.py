@@ -63,7 +63,11 @@ elif response == '4':
     print("Open Ports: ", scanner[ip_addr]['tcp'].keys())
      
 elif response == '5':
-    print(scanner.scan(ip_addr, arguments="-O")['scan'][ip_addr]['osmatch'][1])
+    result = scanner.scan(ip_addr, arguments='-O')
+
+    osmatch_list = result['scan'][ip_addr]['osmatch']
+    print(osmatch_list)
+
  
 elif response == '6':
     ip_addr = input()
